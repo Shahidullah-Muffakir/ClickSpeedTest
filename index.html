@@ -83,11 +83,11 @@
 <body>
     <div class="container">
         <h1>Click Speed Test</h1>
-        <p>Click the button as fast as you can in 10 seconds!</p>
+        <p>Click the button as fast as you can in 5 seconds!</p>
         <button id="clickButton" class="click-btn">Click Me!</button>
         <div class="stats">
             <div id="clicks">Clicks: 0</div>
-            <div id="timer">Time Left: 10s</div>
+            <div id="timer">Time Left: 5.000s</div>
         </div>
         <button id="restartButton" class="restart-btn" style="display: none;">Restart</button>
     </div>
@@ -99,7 +99,7 @@
         const timerDisplay = document.getElementById('timer');
 
         let clickCount = 0;
-        let timeLeft = 10;
+        let timeLeft = 5000; // in milliseconds
         let isGameRunning = false;
         let timerInterval;
 
@@ -108,20 +108,20 @@
 
             isGameRunning = true;
             clickCount = 0;
-            timeLeft = 10;
+            timeLeft = 5000;
 
             clicksDisplay.textContent = `Clicks: ${clickCount}`;
-            timerDisplay.textContent = `Time Left: ${timeLeft}s`;
+            timerDisplay.textContent = `Time Left: ${(timeLeft / 1000).toFixed(3)}s`;
             restartButton.style.display = 'none';
 
             timerInterval = setInterval(() => {
-                timeLeft--;
-                timerDisplay.textContent = `Time Left: ${timeLeft}s`;
+                timeLeft -= 10;
+                timerDisplay.textContent = `Time Left: ${(timeLeft / 1000).toFixed(3)}s`;
 
                 if (timeLeft <= 0) {
                     endGame();
                 }
-            }, 1000);
+            }, 10);
         };
 
         const endGame = () => {
