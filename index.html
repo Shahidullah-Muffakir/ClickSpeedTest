@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click Speed Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: #fff;
+            text-align: center;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .click-btn {
+            background: #ff5722;
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .click-btn:hover {
+            background: #e64a19;
+        }
+
+        .stats {
+            margin-top: 20px;
+        }
+
+        .stats div {
+            margin: 10px 0;
+        }
+
+        .restart-btn {
+            margin-top: 20px;
+            background: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .restart-btn:hover {
+            background: #388e3c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Click Speed Test</h1>
+        <p>Click the button as fast as you can in 10 seconds!</p>
+        <button id="clickButton" class="click-btn">Click Me!</button>
+        <div class="stats">
+            <div id="clicks">Clicks: 0</div>
+            <div id="timer">Time Left: 10s</div>
+        </div>
+        <button id="restartButton" class="restart-btn" style="display: none;">Restart</button>
+    </div>
+
+    <script>
+        const clickButton = document.getElementById('clickButton');
+        const restartButton = document.getElementById('restartButton');
+        const clicksDisplay = document.getElementById('clicks');
+        const timerDisplay = document.getElementById('timer');
+
+        let clickCount = 0;
+        let timeLeft = 10;
+        let isGameRunning = false;
+        let timerInterval;
+
+        const startGame = () => {
+            if (isGameRunning) return;
+
+            isGameRunning = true;
+            clickCount = 0;
+            timeLeft = 10;
+
+            clicksDisplay.textContent = `Clicks: ${clickCount}`;
+            timerDisplay.textContent = `Time Left: ${timeLeft}s`;
+            restartButton.style.display = 'none';
+
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                timerDisplay.textContent = `Time Left: ${timeLeft}s`;
+
+                if (timeLeft <= 0) {
+                    endGame();
+                }
+            }, 1000);
+        };
+
+        const endGame = () => {
+            isGameRunning = false;
+            clearInterval(timerInterval);
+            timerDisplay.textContent = 'Time is up!';
+            restartButton.style.display = 'block';
+        };
+
+        clickButton.addEventListener('click', () => {
+            if (!isGameRunning) {
+                startGame();
+            }
+
+            if (isGameRunning) {
+                clickCount++;
+                clicksDisplay.textContent = `Clicks: ${clickCount}`;
+            }
+        });
+
+        restartButton.addEventListener('click', startGame);
+    </script>
+</body>
+</html>
