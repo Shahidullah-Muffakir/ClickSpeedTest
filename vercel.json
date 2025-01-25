@@ -1,0 +1,19 @@
+{
+    "builds": [
+      {
+        "src": "api/server.js",  // Path to your Express server file
+        "use": "@vercel/node"       // Tells Vercel to use Node.js for this file
+      },
+      {
+        "src": "public/*",           // Static files in the 'public' folder
+        "use": "@vercel/static"      // Tells Vercel to serve these as static files
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",              // Match all requests
+        "dest": "api/server.js"   // Route them to your Express server
+      }
+    ]
+  }
+  

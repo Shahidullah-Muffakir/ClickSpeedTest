@@ -13,8 +13,9 @@ let clickCount = 0;
 let timeLeft = 5000; // 5 seconds
 let isGameRunning = false;
 let timerInterval;
+const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+const baseURL = isDevelopment ? 'http://localhost:3000' : ''; // Empty string uses the same domain
 
-const baseURL = 'http://localhost:3000';
 const myFetch = async (endpoint, options) => {
     return await fetch(baseURL + endpoint, options);
 };
