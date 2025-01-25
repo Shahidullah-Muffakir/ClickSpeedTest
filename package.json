@@ -1,0 +1,22 @@
+{
+  "name": "clickspeed",
+  "version": "1.0.0",
+  "description": "Click speed test application",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "build": "echo 'No build step required'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "moment": "^2.30.1",
+    "mongoose": "^8.9.5",
+    "morgan": "^1.10.0"
+  }
+}
