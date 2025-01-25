@@ -90,7 +90,7 @@ const saveScore = async () => {
                 confirmationModal.style.display = 'none';
                 saveScoreDiv.style.display = 'none';
             }
-                , 1500);
+                , 2000);
             fetchLeaderboard(); // Update leaderboard after saving
         } else {
             showError(data.message || 'Failed to save score. Try again.');
@@ -144,6 +144,8 @@ const endGame = () => {
     restartButton.style.display = 'block';
     saveScoreDiv.style.display = 'block';
     fetchRank(clickCount);
+    clickButton.disabled = true;
+    clickButton.style.cursor = 'not-allowed';
 };
 
 // Button click to count clicks

@@ -74,8 +74,12 @@
             transition: background 0.3s ease;
         }
 
-        .click-btn:hover {
+        .click-btn:hover:enabled {
             background: #e64a19;
+            scale: 1.1;
+        }
+        .click-btn:active:enabled{
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
         }
 
         .stats {
@@ -242,6 +246,40 @@
         .close-btn:hover {
             background: #45a049;
         }
+        .playerNameAndBtn{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            height: 30px;
+            input, button{
+                display: flex;
+                height: 100%;
+                padding: 20px;
+                border-radius: 6px;
+                align-items: center;
+                justify-content: center;
+           
+            }
+            button{
+                cursor: pointer;
+                
+            }
+            button:hover{
+                background: #4caf50;
+                scale: 1.1;
+            }
+        }
+        .closeErrorModal{
+            padding: 10px 20px;
+            background: #4c66af;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 1.2rem;
+        }
     </style>
 </head>
 
@@ -256,11 +294,13 @@
         </div>
         <button id="restartButton" class="restart-btn" style="display: none;">Restart</button>
 
-        <div id="saveScoreDiv" class="save-score" style="display: none;">
-            <h3>Your Rank: <span id="playerRank">0</span></h3>
+        <div id="saveScoreDiv" class="save-score" style="">
+            <h3>Your World Rank: <span id="playerRank">0</span></h3>
             <p>Do you want to save your score?</p>
-            <input type="text" id="playerName" placeholder="Enter your name" />
-            <button id="saveButton" class="save-btn">Save</button>
+            <div class="playerNameAndBtn">
+                <input type="text" id="playerName" placeholder="Enter your name" />
+                <button id="saveButton" class="save-btn">Save</button>
+            </div>
         </div>
     </div>
     <div id="confirmationModal" class="modal" style="display: none;">
@@ -274,7 +314,7 @@
     <div id="errorModal" class="modal">
         <div class="modal-content">
             <h2>Error Occurred</h2>
-            <button id="closeErrorModal">Close</button>
+            <button class="closeErrorModal" id="closeErrorModal">Close</button>
         </div>
     </div>
 
